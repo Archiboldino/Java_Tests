@@ -46,6 +46,10 @@ public class MainController {
         this.view = view;
     }
 
+    /**
+     * Process input of name, login and comment.
+     * Check them by regexps and add to model.
+     */
     public void processInput() {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -65,13 +69,21 @@ public class MainController {
 
             Entry entry = new Entry(name, login, comment);
             model.addEntry(entry);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             view.print(e.getMessage());
         }
     }
 
-    private String inputRegexpCheckedString(BufferedReader reader, Pattern pattern, String wrongInputMessage) throws IOException{
+    /**
+     * Check string from reader with regex.
+     * Output error if it's wrong
+     * @param reader reader to get input
+     * @param pattern pattern to check with
+     * @param wrongInputMessage wrong input message
+     * @return correct string from reader
+     * @throws IOException
+     */
+    private String inputRegexpCheckedString(BufferedReader reader, Pattern pattern, String wrongInputMessage) throws IOException {
         String res;
         Matcher m;
 

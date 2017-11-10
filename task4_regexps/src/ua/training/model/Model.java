@@ -13,6 +13,10 @@ import java.util.List;
 public class Model {
     private List<Entry> entries = new ArrayList<>();
 
+    /**
+     * Add entry to entry list
+     * @param entry entry to add
+     */
     public void addEntry(Entry entry) {
         entries.add(entry);
     }
