@@ -1,4 +1,4 @@
-package ua.training;
+package ua.training.view;
 
 /**
  * View
@@ -8,4 +8,7 @@ package ua.training;
  * @version 1.0
  */
 public class View {
+    public void print(String s) {
+        System.out.println(s);
+    }
 }
