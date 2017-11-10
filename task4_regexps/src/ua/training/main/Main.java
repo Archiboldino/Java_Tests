@@ -1,5 +1,9 @@
 package ua.training.main;
 
+import ua.training.controller.MainController;
+import ua.training.model.Model;
+import ua.training.view.View;
+
 /**
  * Main
  * created on 08.11.2017
@@ -9,5 +13,10 @@ package ua.training.main;
  */
 public class Main {
     public static void main(String[] args) {
+        Model model = new Model();
+        View view = new View();
+        MainController controller = new MainController(model, view);
+
+        controller.processInput();
     }
 }
