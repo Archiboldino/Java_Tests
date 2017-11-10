@@ -4,6 +4,10 @@ import ua.training.model.Entry;
 import ua.training.model.Model;
 import ua.training.view.View;
 
+import java.io.BufferedReader;
+import java.io.IOError;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -44,34 +48,39 @@ public class MainController {
 
     public void processInput() {
 
-        Scanner sc = new Scanner(System.in);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        view.print(bundle.getString(LOGIN_INPUT_KEY));
-        Pattern loginPattern = Pattern.compile(regexBundle.getString(LOGIN_REGEX_KEY));
-        String login = inputRegexpCheckedString(sc, loginPattern, bundle.getString(WRONG_LOGIN_KEY));
+        try {
+            view.print(bundle.getString(LOGIN_INPUT_KEY));
+            Pattern loginPattern = Pattern.compile(regexBundle.getString(LOGIN_REGEX_KEY));
+            String login = inputRegexpCheckedString(reader, loginPattern, bundle.getString(WRONG_LOGIN_KEY));
 
-        view.print(bundle.getString(NAME_INPUT_KEY));
-        Pattern namePattern = Pattern.compile(regexBundle.getString(NAME_REGEX_KEY));
-        String name = inputRegexpCheckedString(sc, namePattern, bundle.getString(WRONG_NAME_KEY));
+            view.print(bundle.getString(NAME_INPUT_KEY));
+            Pattern namePattern = Pattern.compile(regexBundle.getString(NAME_REGEX_KEY));
+            String name = inputRegexpCheckedString(reader, namePattern, bundle.getString(WRONG_NAME_KEY));
 
-        view.print(bundle.getString(COMMENT_INPUT_KEY));
-        Pattern commentPattern = Pattern.compile(regexBundle.getString(COMMENT_REGEX_KEY));
-        String comment = inputRegexpCheckedString(sc, commentPattern, bundle.getString(WRONG_COMMENT_KEY));
+            view.print(bundle.getString(COMMENT_INPUT_KEY));
+            Pattern commentPattern = Pattern.compile(regexBundle.getString(COMMENT_REGEX_KEY));
+            String comment = inputRegexpCheckedString(reader, commentPattern, bundle.getString(WRONG_COMMENT_KEY));
 
-        Entry entry = new Entry(name, login, comment);
-        model.addEntry(entry);
+            Entry entry = new Entry(name, login, comment);
+            model.addEntry(entry);
+        }
+        catch (IOException e) {
+            view.print(e.getMessage());
+        }
     }
 
-    private String inputRegexpCheckedString(Scanner sc, Pattern pattern, String wrongInputMessage) {
+    private String inputRegexpCheckedString(BufferedReader reader, Pattern pattern, String wrongInputMessage) throws IOException{
         String res;
         Matcher m;
 
-        res = sc.next();
+        res = reader.readLine();
         m = pattern.matcher(res);
 
         while (!m.matches()) {
-            view.print(bundle.getString(wrongInputMessage));
-            res = sc.next();
+            view.print(wrongInputMessage);
+            res = reader.readLine();
             m = pattern.matcher(res);
         }
 
