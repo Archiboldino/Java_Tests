@@ -1,5 +1,7 @@
 package ua.training.model;
 
+import ua.training.exceptions.NotUniqueException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,13 @@ public class Model {
      * Add entry to entry list
      * @param entry entry to add
      */
-    public void addEntry(Entry entry) {
+    public void addEntry(Entry entry) throws NotUniqueException{
+        for (Entry item : entries) {
+            if (item.getLogin().equals(entry.getLogin())){
+                throw new NotUniqueException(entry.getLogin());
+            }
+        }
+
         entries.add(entry);
     }
 }
