@@ -1,5 +1,6 @@
 package ua.training.controller;
 
+import ua.training.exceptions.NotUniqueException;
 import ua.training.model.Entry;
 import ua.training.model.Model;
 import ua.training.view.View;
@@ -29,6 +30,7 @@ public class MainController {
     private static final String WRONG_LOGIN_KEY = "input.wrong.login";
     private static final String WRONG_NAME_KEY = "input.wrong.name";
     private static final String WRONG_COMMENT_KEY = "input.wrong.comment";
+    private static final String NOT_UNIQUE_LOGIN_KEY = "input.wrong.notunique.login";
 
     private static final String REGEX_BUNDLE_NAME = "regex";
     private static final String LOGIN_REGEX_KEY = "regex.login";
@@ -52,24 +54,25 @@ public class MainController {
      */
     public void processInput() {
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        Scanner sc = new Scanner(System.in);
 
         try {
             view.print(bundle.getString(LOGIN_INPUT_KEY));
             Pattern loginPattern = Pattern.compile(regexBundle.getString(LOGIN_REGEX_KEY));
-            String login = inputRegexpCheckedString(reader, loginPattern, bundle.getString(WRONG_LOGIN_KEY));
+            String login = inputRegexpCheckedString(sc, loginPattern, bundle.getString(WRONG_LOGIN_KEY));
 
             view.print(bundle.getString(NAME_INPUT_KEY));
             Pattern namePattern = Pattern.compile(regexBundle.getString(NAME_REGEX_KEY));
-            String name = inputRegexpCheckedString(reader, namePattern, bundle.getString(WRONG_NAME_KEY));
+            String name = inputRegexpCheckedString(sc, namePattern, bundle.getString(WRONG_NAME_KEY));
 
             view.print(bundle.getString(COMMENT_INPUT_KEY));
             Pattern commentPattern = Pattern.compile(regexBundle.getString(COMMENT_REGEX_KEY));
-            String comment = inputRegexpCheckedString(reader, commentPattern, bundle.getString(WRONG_COMMENT_KEY));
+            String comment = inputRegexpCheckedString(sc, commentPattern, bundle.getString(WRONG_COMMENT_KEY));
 
             Entry entry = new Entry(name, login, comment);
-            model.addEntry(entry);
+
         } catch (IOException e) {
+            e.printStackTrace();
             view.print(e.getMessage());
         }
     }
@@ -77,22 +80,23 @@ public class MainController {
     /**
      * Check string from reader with regex.
      * Output error if it's wrong
-     * @param reader reader to get input
+     * @param sc scanner to get input
      * @param pattern pattern to check with
      * @param wrongInputMessage wrong input message
      * @return correct string from reader
      * @throws IOException
      */
-    private String inputRegexpCheckedString(BufferedReader reader, Pattern pattern, String wrongInputMessage) throws IOException {
+    private String inputRegexpCheckedString(Scanner sc, Pattern pattern, String wrongInputMessage)
+            throws IOException {
         String res;
         Matcher m;
 
-        res = reader.readLine();
+        res = sc.nextLine();
         m = pattern.matcher(res);
 
         while (!m.matches()) {
             view.print(wrongInputMessage);
-            res = reader.readLine();
+            res = sc.nextLine();
             m = pattern.matcher(res);
         }
 
