@@ -53,9 +53,6 @@ public class MainController {
      * Check them by regexps and add to model.
      */
     public void processInput() {
-
-        Scanner sc = new Scanner(System.in);
-
         String login = inputInformation(LOGIN_INPUT_KEY, LOGIN_REGEX_KEY, WRONG_LOGIN_KEY);
 
         String name = inputInformation(NAME_INPUT_KEY, NAME_REGEX_KEY, WRONG_NAME_KEY);
@@ -64,12 +61,7 @@ public class MainController {
 
         Entry entry = new Entry(name, login, comment);
 
-        try {
-            model.addEntry(entry);
-        }
-        catch (NotUniqueException e) {
-            
-        }
+        tryToAddEntryToModel(entry);
 
     }
 
@@ -111,6 +103,22 @@ public class MainController {
 
         view.print(bundle.getString(inputMessageKey));
 
-        return inputRegexpCheckedString(sc, bundle.getString(regexpKey), bundle.getString(wrongInputMessageKey));
+        return inputRegexpCheckedString(sc, regexBundle.getString(regexpKey), bundle.getString(wrongInputMessageKey));
+    }
+
+    /**
+     * Print error message on not unique login and tries again
+     * @param entry entry to add
+     */
+    private void tryToAddEntryToModel(Entry entry) {
+        try {
+            model.addEntry(entry);
+        }
+        catch (NotUniqueException e) {
+            view.print(String.format(bundle.getString(NOT_UNIQUE_LOGIN_KEY), e.getInput()));
+            String login = inputInformation(LOGIN_INPUT_KEY, LOGIN_REGEX_KEY, WRONG_LOGIN_KEY);
+            entry.setLogin(login);
+            tryToAddEntryToModel(entry);
+        }
     }
 }
