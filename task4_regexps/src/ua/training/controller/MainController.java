@@ -64,9 +64,9 @@ public class MainController {
     /**
      * Retrieves necessary information from bundle
      * and passes it to regex check method
-     * @param inputMessageKey
-     * @param regexpKey
-     * @param wrongInputMessageKey
+     * @param inputMessageKey key to input message in bundle
+     * @param regexpKey key to regexp in regexp bundle
+     * @param wrongInputMessageKey key to wrong input message in bundle
      * @return correct input string
      */
     private String inputInformation(String inputMessageKey, String regexpKey, String wrongInputMessageKey) {
@@ -87,6 +87,7 @@ public class MainController {
             view.print(String.format(bundle.getString(NOT_UNIQUE_LOGIN_KEY), e.getInput()));
             String login = inputInformation(LOGIN_INPUT_KEY, LOGIN_REGEX_KEY, WRONG_LOGIN_KEY);
             entry.setLogin(login);
+
             tryToAddEntryToModel(entry);
         }
     }
