@@ -15,9 +15,16 @@ import java.util.List;
 public class Model {
     private List<Entry> entries = new ArrayList<>();
 
+    public Model(){
+        Entry testEntry = new Entry("name", "login", "comment");
+
+        entries.add(testEntry);
+    }
+
     /**
-     * Add entry to entry list
+     * Adds entry to entries list
      * @param entry entry to add
+     * @throws NotUniqueException thrown when there is already entry with specified login
      */
     public void addEntry(Entry entry) throws NotUniqueException{
         for (Entry item : entries) {
