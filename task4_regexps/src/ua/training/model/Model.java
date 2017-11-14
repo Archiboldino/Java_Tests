@@ -15,6 +15,9 @@ import java.util.List;
 public class Model {
     private List<Entry> entries = new ArrayList<>();
 
+    /**
+     * Default constructor also creates test entry with login "login"
+     */
     public Model(){
         Entry testEntry = new Entry("name", "login", "comment");
 
