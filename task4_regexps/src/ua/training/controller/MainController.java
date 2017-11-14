@@ -5,14 +5,8 @@ import ua.training.model.Entry;
 import ua.training.model.Model;
 import ua.training.view.View;
 
-import java.io.BufferedReader;
-import java.io.IOError;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * MainController
@@ -42,10 +36,12 @@ public class MainController {
 
     private Model model;
     private View view;
+    private UtilityController utilityController;
 
     public MainController(Model model, View view) {
         this.model = model;
         this.view = view;
+        utilityController = new UtilityController(view, new Scanner(System.in));
     }
 
     /**
@@ -66,31 +62,6 @@ public class MainController {
     }
 
     /**
-     * Check string from reader with regex.
-     * Output error if it's wrong
-     * @param sc scanner to get input
-     * @param regexp regexp to check with
-     * @param wrongInputMessage wrong input message
-     * @return correct string from reader
-     */
-    private String inputRegexpCheckedString(Scanner sc, String regexp, String wrongInputMessage) {
-        String res;
-        Matcher m;
-        Pattern pattern = Pattern.compile(regexp);
-
-        res = sc.nextLine();
-        m = pattern.matcher(res);
-
-        while (!m.matches()) {
-            view.print(wrongInputMessage);
-            res = sc.nextLine();
-            m = pattern.matcher(res);
-        }
-
-        return res;
-    }
-
-    /**
      * Retrieves necessary information from bundle
      * and passes it to regex check method
      * @param inputMessageKey
@@ -99,11 +70,9 @@ public class MainController {
      * @return correct input string
      */
     private String inputInformation(String inputMessageKey, String regexpKey, String wrongInputMessageKey) {
-        Scanner sc = new Scanner(System.in);
-
         view.print(bundle.getString(inputMessageKey));
 
-        return inputRegexpCheckedString(sc, regexBundle.getString(regexpKey), bundle.getString(wrongInputMessageKey));
+        return utilityController.inputRegexpCheckedString(regexBundle.getString(regexpKey), bundle.getString(wrongInputMessageKey));
     }
 
     /**
