@@ -1,5 +1,7 @@
 package com.company.model.entities;
 
+import com.company.model.HumanBuilder;
+
 import java.time.LocalDate;
 
 /**
@@ -12,6 +14,10 @@ public class Human implements HumanDriver, HumanDriverLicence {
     private Gender gender;
     public enum BloodGroup {FIRST , SECOND, THIRD , FOURTH};
     private BloodGroup bloodGroup;
+
+    public static HumanBuilder getBuilder() {
+        return new HumanBuilder();
+    }
 
     public Human() {
     }
