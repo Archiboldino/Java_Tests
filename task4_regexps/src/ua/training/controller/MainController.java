@@ -58,7 +58,6 @@ public class MainController {
         Entry entry = new Entry(name, login, comment);
 
         tryToAddEntryToModel(entry);
-
     }
 
     /**
