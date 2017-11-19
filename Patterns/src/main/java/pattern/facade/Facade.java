@@ -1,7 +1,5 @@
 package pattern.facade;
 
-import java.util.HashMap;
-
 /**
  * Facade
  * created on 19.11.2017
@@ -24,26 +22,5 @@ public class Facade {
         power.turnOn();
         hardDrive.read();
         screen.showImage();
-    }
-}
-
-class Power {
-    public void turnOn() {
-    }
-
-    public void turnOff() {
-    }
-}
-
-class HardDrive {
-    public void read() {
-    }
-
-    public void write() {
-    }
-}
-
-class Screen {
-    public void showImage() {
     }
 }
