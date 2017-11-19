@@ -14,8 +14,9 @@ import java.util.Map;
 public class Counter {
     /**
      * Counts objects in list
+     *
      * @param items list which contains objects
-     * @param <T> type of objects in list
+     * @param <T>   type of objects in list
      * @return map with objects and number of occurrences
      */
     public <T> Map<T, Integer> countNumberOfThings(List<T> items) {
