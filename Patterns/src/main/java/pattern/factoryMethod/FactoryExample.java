@@ -11,7 +11,7 @@ import java.util.List;
  * @version 1.0
  */
 public class FactoryExample {
-    public void example() {
+    public static void example() {
         AbstractFactory[] factories = {new ConcreteFactory1(), new ConcreteFactory2()};
         List<AbstractProduct> productList = new ArrayList<AbstractProduct>();
 
