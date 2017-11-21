@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ua.training</groupId>
-    <artifactId>Patterns</artifactId>
+    <artifactId>task5_no_delete_list</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
