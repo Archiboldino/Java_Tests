@@ -1,7 +1,5 @@
 package pattern.composite;
 
-import javafx.scene.control.cell.ComboBoxTableCell;
-
 /**
  * CompositeExample
  * created on 19.11.2017

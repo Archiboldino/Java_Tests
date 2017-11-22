@@ -15,11 +15,11 @@ public class FactoryExample {
         AbstractFactory[] factories = {new ConcreteFactory1(), new ConcreteFactory2()};
         List<AbstractProduct> productList = new ArrayList<AbstractProduct>();
 
-        for(AbstractFactory factory: factories) {
+        for (AbstractFactory factory : factories) {
             productList.add(factory.factoryMethod());
         }
 
-        for(AbstractProduct product: productList) {
+        for (AbstractProduct product : productList) {
             System.out.println(product.getClass() + " was created.");
         }
     }

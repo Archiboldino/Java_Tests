@@ -1,9 +1,7 @@
 package pattern.flyweight;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * FlyweightFactory
@@ -17,7 +15,7 @@ public class FlyweightFactory {
 
     public Flyweight getFlyweight(int data) {
         Flyweight flyweight = new ConcreteFlyweight(data);
-        if(flyweights.containsKey(flyweight.hashCode()))
+        if (flyweights.containsKey(flyweight.hashCode()))
             return flyweights.get(flyweight.hashCode());
         else
             return flyweights.put(flyweight.hashCode(), flyweight);

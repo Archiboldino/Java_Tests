@@ -22,7 +22,7 @@ public class CompositeGraphic implements Graphic {
     }
 
     public void draw() {
-        for(Graphic item: childGraphics)
+        for (Graphic item : childGraphics)
             item.draw();
     }
 }

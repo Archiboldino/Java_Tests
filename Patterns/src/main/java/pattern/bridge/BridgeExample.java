@@ -1,7 +1,5 @@
 package pattern.bridge;
 
-import sun.security.provider.SHA;
-
 /**
  * BridgeExample
  * created on 22.11.2017

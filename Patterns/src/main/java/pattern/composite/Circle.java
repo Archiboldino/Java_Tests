@@ -7,7 +7,7 @@ package pattern.composite;
  * @author Nikita Zabaykin vladlihovid@gmail.com
  * @version 1.0
  */
-public class Circle implements Graphic{
+public class Circle implements Graphic {
     public void draw() {
         System.out.println("Drawing Circle");
     }
