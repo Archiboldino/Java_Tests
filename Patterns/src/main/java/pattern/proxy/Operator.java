@@ -1,11 +1,12 @@
-package PACKAGE_NAME;
+package pattern.proxy;
 
 /**
- * Operator
+ * pattern.proxy.Operator
  * created on 27.11.2017
  *
  * @author Nikita Zabaykin vladlihovid@gmail.com
  * @version 1.0
  */
-public class Operator {
+public interface Operator {
+    void operate();
 }
