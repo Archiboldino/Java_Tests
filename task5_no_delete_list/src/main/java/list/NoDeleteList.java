@@ -14,7 +14,7 @@ import java.util.function.Predicate;
  * @author Nikita Zabaykin vladlihovid@gmail.com
  * @version 1.0
  */
-public class NoDeleteList<T> extends ArrayList<T>{
+public class NoDeleteList<T> extends ArrayList<T> {
     @Override
     public T remove(int i) {
         throw new UnsupportedOperationException();
