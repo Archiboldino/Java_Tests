@@ -1,4 +1,4 @@
-package pattern.factoryMethod;
+package pattern.abstractFactory;
 
 /**
  * ConcreteProduct1
@@ -7,5 +7,5 @@ package pattern.factoryMethod;
  * @author Nikita Zabaykin vladlihovid@gmail.com
  * @version 1.0
  */
-public class ConcreteProduct1 extends AbstractProduct {
+public class ConcreteProduct2 extends AbstractProduct {
 }

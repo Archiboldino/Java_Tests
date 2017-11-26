@@ -1,7 +1,7 @@
-package pattern.factoryMethod;
+package pattern.abstractFactory;
 
 /**
- * pattern.factoryMethod.AbstractFactory
+ * pattern.abstractFactory.AbstractFactory
  * created on 19.11.2017
  *
  * @author Nikita Zabaykin vladlihovid@gmail.com

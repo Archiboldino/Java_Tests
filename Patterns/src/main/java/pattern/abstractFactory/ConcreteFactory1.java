@@ -1,4 +1,4 @@
-package pattern.factoryMethod;
+package pattern.abstractFactory;
 
 /**
  * ConcreteFactory1

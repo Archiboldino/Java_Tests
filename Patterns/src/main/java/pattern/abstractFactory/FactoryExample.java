@@ -1,4 +1,4 @@
-package pattern.factoryMethod;
+package pattern.abstractFactory;
 
 import java.util.ArrayList;
 import java.util.List;
