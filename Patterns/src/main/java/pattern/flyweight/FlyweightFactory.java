@@ -11,7 +11,7 @@ import java.util.Map;
  * @version 1.0
  */
 public class FlyweightFactory {
-    private Map<Integer, Flyweight> flyweights = new HashMap();
+    private Map<Integer, Flyweight> flyweights = new HashMap<>();
 
     public Flyweight getFlyweight(int data) {
         Flyweight flyweight = new ConcreteFlyweight(data);
