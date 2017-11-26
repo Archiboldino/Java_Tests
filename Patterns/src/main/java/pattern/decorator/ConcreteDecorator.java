@@ -7,13 +7,13 @@ package pattern.decorator;
  * @author Nikita Zabaykin vladlihovid@gmail.com
  * @version 1.0
  */
-public class ConcreteDecorator extends Decorator{
+public class ConcreteDecorator extends Decorator {
     public ConcreteDecorator(Operator operator) {
         super(operator);
     }
 
     @Override
-    public void operation(){
+    public void operation() {
         System.out.print("Decorated ");
         super.operation();
     }

@@ -10,7 +10,7 @@ package pattern.decorator;
 public class DecoratorExample {
     public static void example() {
         Operator operator = new ConcreteOperator();
-        
+
         Decorator decorator = new ConcreteDecorator(operator);
         Decorator doubleDecorator = new ConcreteDecorator(decorator);
 

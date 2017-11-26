@@ -7,7 +7,7 @@ package pattern.decorator;
  * @author Nikita Zabaykin vladlihovid@gmail.com
  * @version 1.0
  */
-public abstract class Decorator implements Operator{
+public abstract class Decorator implements Operator {
     Operator operator;
 
     public Decorator(Operator operator) {
@@ -15,7 +15,7 @@ public abstract class Decorator implements Operator{
     }
 
     @Override
-    public void operation(){
+    public void operation() {
         operator.operation();
     }
 }
