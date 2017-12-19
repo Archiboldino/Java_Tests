@@ -10,7 +10,7 @@ package model;
 public class Retriever implements Runnable{
 
     private String lookingFor;
-    private DocumentQueue queue;
+    private final DocumentQueue queue;
 
     public Retriever(String lookingFor, DocumentQueue queue) {
         this.lookingFor = lookingFor;
@@ -19,12 +19,16 @@ public class Retriever implements Runnable{
 
     @Override
     public void run() {
-        Document doc = queue.retrieveDoc();
-        System.out.println(lookingFor + " retrieved " + doc.getSpeciality() + " ref: " + doc);
-        while(!doc.getSpeciality().equals(lookingFor)) {
-            try {
-                doc = queue.retrieveDoc();
+        while(true) {
+            synchronized (queue) {
+                Document doc = queue.retrieveDoc();
                 System.out.println(lookingFor + " retrieved " + doc.getSpeciality() + " ref: " + doc);
+                while (doc.getSpeciality().equals(lookingFor)) {
+                    doc = queue.retrieveDoc();
+                    System.out.println(lookingFor + " retrieved " + doc.getSpeciality() + " ref: " + doc);
+                }
+            }
+            try {
                 Thread.sleep(100L);
             }
             catch (InterruptedException e) {

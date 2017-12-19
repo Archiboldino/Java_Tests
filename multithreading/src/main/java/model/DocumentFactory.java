@@ -11,9 +11,13 @@ import java.util.List;
  * @version 1.0
  */
 public class DocumentFactory {
+    private static int mathLeft = 10;
+    private static int bioLeft = 15;
+
+
     public static List<Document> createDocuments(int num) {
         List<Document> res = new ArrayList<>();
-        for(int i = 0; i < num; i++) {
+        for (int i = 0; i < num; i++) {
             res.add(randomDocument());
         }
 
@@ -22,14 +26,14 @@ public class DocumentFactory {
 
     private static Document randomDocument() {
         Document doc = new Document();
-        if(Math.random() < 0.1) {
+        if (mathLeft > 0 && (Math.random() < 0.5 || bioLeft <= 0)) {
             doc.setSpeciality("math");
-        }
-        else if (Math.random() < 0.2) {
+            mathLeft--;
+        } else if (bioLeft > 0) {
             doc.setSpeciality("biology");
-        }
-        else {
-            doc.setSpeciality("anotherOne");
+            bioLeft--;
+        } else {
+            throw new RuntimeException("No documents left.");
         }
         doc.setName("name");
 

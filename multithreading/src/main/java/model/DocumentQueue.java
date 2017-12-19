@@ -11,8 +11,8 @@ import java.util.Queue;
  * @version 1.0
  */
 public class DocumentQueue {
-    private static final int MIN_QUEUE_SIZE = 25;
-    private static final int ADDED_NUM = 50;
+    private static final int MIN_QUEUE_SIZE = 2;
+    private static final int ADDED_NUM = 3;
 
     private final Queue<Document> documents = new ArrayDeque<>();
 
@@ -20,10 +20,15 @@ public class DocumentQueue {
     }
 
     public Document retrieveDoc() {
-        if (documents.size() < MIN_QUEUE_SIZE + 1) {
+        if (documents.size() < MIN_QUEUE_SIZE) {
             synchronized (documents) {
-                if (documents.size() < MIN_QUEUE_SIZE + 1) {
-                    documents.addAll(DocumentFactory.createDocuments(ADDED_NUM));
+                if (documents.size() < MIN_QUEUE_SIZE) {
+                    try {
+                        documents.addAll(DocumentFactory.createDocuments(ADDED_NUM));
+                    }
+                    catch (RuntimeException e) {
+                        System.exit(0);
+                    }
                 }
             }
         }
